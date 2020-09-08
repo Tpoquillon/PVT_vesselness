@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pvtvesselness.evaluation module &#8212; first test 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pvtvesselness.evaluation">
+<span id="pvtvesselness-evaluation-module"></span><h1>pvtvesselness.evaluation module<a class="headerlink" href="#module-pvtvesselness.evaluation" title="Permalink to this headline">¶</a></h1>
+<p>Created on Fri Jul 17 10:06:56 2020</p>
+<p>&#64;author: titou</p>
+<dl class="py function">
+<dt id="pvtvesselness.evaluation.Eval">
+<code class="sig-prename descclassname">pvtvesselness.evaluation.</code><code class="sig-name descname">Eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotation</span></em>, <em class="sig-param"><span class="n">prediction</span></em>, <em class="sig-param"><span class="n">n_threshold</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.evaluation.Eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an evaluation grid comparing predictions and annotations by
+building a segmentation for several threshold and counting True Positiv,
+False Negativ, False Positiv and True Negativ for these segmentations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotation</strong> (<em>numpy 1d-array</em>) – array where points are annoted with 1 if vessels</p></li>
+<li><p><strong>prediction</strong> (<em>numpy 1d-array</em>) – array with pevaluation_arraybabilities for each point to be a vessel</p></li>
+<li><p><strong>n_threshold</strong> (<em>int</em>) – number of threshold to get segmentations fevaluation_arraym the
+prediction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>evaluation_array</strong> – for each threshold, the number of True Positiv, False Negativ, False
+Positiv and True Negativ</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2d-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.evaluation.Metrics">
+<code class="sig-prename descclassname">pvtvesselness.evaluation.</code><code class="sig-name descname">Metrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">evaluation_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.evaluation.Metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute sensitivity, speccificity, MCC and Dice from array with
+True Positiv, False Negativ, False Positiv and True Negativ for several
+threshold</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>evaluation_array</strong> (<em>2d-array</em>) – for each threshold, the number of True Positiv, False Negativ, False
+Positiv and True Negativ</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Sens</strong> (<em>1d array</em>) – sensitivity for each threshold</p></li>
+<li><p><strong>Spec</strong> (<em>1d array</em>) – specificity for each threshold</p></li>
+<li><p><strong>MCC</strong> (<em>1d array</em>) – Mcc for each threshold</p></li>
+<li><p><strong>Dice</strong> (<em>1d array</em>) – Dice for each threshold</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.evaluation.SummarisedMetrics">
+<code class="sig-prename descclassname">pvtvesselness.evaluation.</code><code class="sig-name descname">SummarisedMetrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">evaluation_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.evaluation.SummarisedMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>buils a summarising dictionary from metrics, finding best values,
+threshold for best values and values on median threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>evaluation_array</strong> (<em>2d-array</em>) – for each threshold, the number of True Positiv, False Negativ, False
+Positiv and True Negativ</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>metrics_dic</strong> (<em>dictionary</em>) – dictionnary with metrics of interest</p></li>
+<li><p><strong>curv_dict</strong> (<em>dictionary</em>) – dictionnary with curv of interest</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">first test</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, titouan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/evaluation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

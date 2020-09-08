@@ -1,0 +1,46 @@
+Pvtvesselness package
+=====================
+
+The **pvtvesselness** package is composed of 4 modules:
+
+* *vesselness* (the package main module), to build sgmentations model and performe cross-validations, optimisations and segmentations,
+* *data_preparation*, to build balanced partitions for cross-validation,
+* *evaluation* , to evaluate models segmentation compared to ground truth,
+* *features_3d*, to build and manage features needed for segmentation.
+
+Submodules
+----------
+
+pvtvesselness.vesselness module
+-------------------------------
+.. toctree::
+   :maxdepth: 2
+
+   vesselness
+
+
+pvtvesselness.data\_preparation module
+--------------------------------------
+.. toctree::
+   :maxdepth: 2
+
+   data_preparations
+   
+
+
+pvtvesselness.evaluation module
+-------------------------------
+.. toctree::
+   :maxdepth: 2
+
+   evaluation
+
+pvtvesselness.features\_3d module
+---------------------------------
+.. toctree::
+   :maxdepth: 2
+
+   features_3d
+
+
+

@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pvtvesselness.features_3d module &#8212; first test 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pvtvesselness.features_3d">
+<span id="pvtvesselness-features-3d-module"></span><h1>pvtvesselness.features_3d module<a class="headerlink" href="#module-pvtvesselness.features_3d" title="Permalink to this headline">¶</a></h1>
+<p>Created on Fri Jul 17 08:44:31 2020</p>
+<p>&#64;author: titou</p>
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.BuildFeatureFiles">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">BuildFeatureFiles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">features</span><span class="o">=</span><span class="default_value">['Gau', 'Lap', 'HGE']</span></em>, <em class="sig-param"><span class="n">sigma</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">dir_path</span><span class="o">=</span><span class="default_value">WindowsPath('.')</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.BuildFeatureFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build all feature files of an imput nd array for a given sigma
+smoothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy nd-array</em>) – The imput array on wich the features will be computed</p></li>
+<li><p><strong>features</strong> (<em>list</em>) – name of the features to be computed</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – The gaussian standar deviation (smoothing coeficient)</p></li>
+<li><p><strong>dir_path</strong> (<em>str</em>) – path of the directory in wich the feature files are to be stored</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.BuildFeatureFilesFromList">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">BuildFeatureFilesFromList</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">features_list</span></em>, <em class="sig-param"><span class="n">dir_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.BuildFeatureFilesFromList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.GaussianSmoothing">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">GaussianSmoothing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">sigma</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.GaussianSmoothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute n-dimentional gaussian smoothing on nd array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy nd-array</em>) – The imput array to be smoothed</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – The gaussian standar deviation (smoothing coeficient)</p></li>
+<li><p><strong>mask</strong> (<em>tuple of n 1d array of size l</em>) – coordonate of l points one wich the smoothing is wanted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>gaussian_s</strong> (<em>numpy nd-array</em>) – The nd array smoothed with a coeficient sigma</p></li>
+<li><p><strong>gaussian_s[mask]</strong> (<em>numpy 1d array</em>) – if mask is not None, return an array of the value of the gaussian
+smoothing for all points in mask</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.HessianEigenvalues">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">HessianEigenvalues</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.HessianEigenvalues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute n-dimentional hessian eigenvalues on nd array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy nd-array</em>) – The imput array on wich the hessian eigenvalues will be computed</p></li>
+<li><p><strong>mask</strong> (<em>tuple of n 1d array of size l</em>) – coordonate of l points one wich the hessian eigenvalues are wanted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>eigenvalues</strong> (<em>numpy nd-array</em>) – The nd array with all n eigenvalues (shape as x shape + 1)</p></li>
+<li><p><strong>eigenvalues[mask]</strong> (<em>numpy 2d array</em>) – if mask is not None, return an array with the value of the hessian
+eigenvalues for all points in mask</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.Laplacian">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">Laplacian</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.Laplacian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute n-dimentional laplacian on nd array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy nd-array</em>) – The imput array on wich the laplacian will be computed</p></li>
+<li><p><strong>mask</strong> (<em>tuple of n 1d array of size l</em>) – coordonate of l points one wich the laplacian is wanted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>laplacian</strong> (<em>numpy nd-array</em>) – The nd array laplacian (same shape as x)</p></li>
+<li><p><strong>laplacian[mask]</strong> (<em>numpy 1d array</em>) – if mask is not None, return an array with the value of the laplacian
+for all points in mask</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.features_3d.LoadFeaturesDir">
+<code class="sig-prename descclassname">pvtvesselness.features_3d.</code><code class="sig-name descname">LoadFeaturesDir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dir_path</span></em>, <em class="sig-param"><span class="n">mask</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.features_3d.LoadFeaturesDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assuming only feature files are in a target directory, build a
+dataframe with the value of each feature at each points of the mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_path</strong> (<em>str</em>) – path of the directory in wich the feature files are stored</p></li>
+<li><p><strong>mask</strong> (<em>tuple of n 1d array of size l</em>) – coordonate of l points one wich the features are wanted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df</strong> – a n * m dataframe where n  is the number of points in mask and m the
+number of features</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">first test</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, titouan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/features_3d.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

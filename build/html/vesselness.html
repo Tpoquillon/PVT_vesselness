@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pvtvesselness.vesselness module &#8212; first test 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pvtvesselness.vesselness">
+<span id="pvtvesselness-vesselness-module"></span><h1>pvtvesselness.vesselness module<a class="headerlink" href="#module-pvtvesselness.vesselness" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.BuildDataFrames">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">BuildDataFrames</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_set</span></em>, <em class="sig-param"><span class="n">path_featur_dir</span></em>, <em class="sig-param"><span class="n">annotations_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.BuildDataFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a cross-validation set, a list of cross_validation_dataframes is
+built, where each row is a point and each features is a column</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_set</strong> (<em>list</em><em> or </em><em>tuple</em>) – list of cross_validation mask.</p></li>
+<li><p><strong>path_featur_dir</strong> (<em>str</em><em> or </em><em>Path</em>) – path to featured_dir.</p></li>
+<li><p><strong>annotations_file</strong> (<em>str</em><em> or </em><em>Path</em>) – path to annotation file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cross_validation_dataframes</strong> – list of cross validation dataframes with features and labels.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.BuildDirectoryTree">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">BuildDirectoryTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">'My_data'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.BuildDirectoryTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>build the directory structure for the segmentation project
+:param path: path to the project root
+:type path: string, optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>path_s</strong> (<em>Path</em>) – Path to the source directory</p></li>
+<li><p><strong>path_f</strong> (<em>Path</em>) – Path to the features directory</p></li>
+<li><p><strong>path_r</strong> (<em>Path</em>) – Path to the result directory</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.CrossEvaluatePred">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">CrossEvaluatePred</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_sets</span></em>, <em class="sig-param"><span class="n">prediction</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.CrossEvaluatePred" title="Permalink to this definition">¶</a></dt>
+<dd><p>From a prediction map  and cross-validation sets performe
+an evaluation on each set, this same way than in the CrossValidation method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_set</strong> (<em>dict</em>) – dictionary of list of cross-validation set (list of mask). each key is
+a vessel proportion.</p></li>
+<li><p><strong>prediction</strong> (<em>numpy_nd_array</em>) – probability map of vessels (or class 0) predictions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results_dict</strong> – a list of dictionary with results all cross validation experiments,
+to be treated with Summarise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.CrossValidation">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">CrossValidation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_dataframes</span></em>, <em class="sig-param"><span class="n">hyperparameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">result_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">'test'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.CrossValidation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>From cross-validation dataframes, performe a cross validation:</dt><dd><p>for each cross validation dataframe, build a random forest model from
+all the others and evaluate it on the labels of the dataframe.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_dataframes</strong> (<em>list</em>) – list of cv dataframes.</p></li>
+<li><p><strong>hyperparameters</strong> (<em>dict</em>) – best param to optimise forest.</p></li>
+<li><p><strong>result_path</strong> (<em>string</em>) – path to result dir where exedentary datas are stored.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the experiment. The default is “test”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results_dict</strong> – a dictionary with results all cross validation experiments,
+to be treated with Summarise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.DFToXY">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">DFToXY</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.DFToXY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide a dataframe producted by BuildDataFrames methode between features
+and labels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<em>pandas DataFrame</em>) – dataframe with features and labels</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>pandas DataFrame</em>) – dataframe of features.</p></li>
+<li><p><strong>y</strong> (<em>pandas Series</em>) – labels</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.DataPreparation">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">DataPreparation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations_file</span></em>, <em class="sig-param"><span class="n">mask_file</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">box_file_list</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">vessel_prop_list</span><span class="o">=</span><span class="default_value">[0.5]</span></em>, <em class="sig-param"><span class="n">point_per_boxe</span><span class="o">=</span><span class="default_value">2000</span></em>, <em class="sig-param"><span class="n">cv</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.DataPreparation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare data for crosse validation experiments. From a set of boxes, in
+wich points have been labelled build a cross validation set, with datas
+balanced between classes and between boxes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annotations_file</strong> (<em>list</em>) – Paths to the annotation file:  3d array where points
+from each class i have a value of i and point without class 0.
+The first class has to be the vessels annotations
+(or the object of interest to be segmented).</p></li>
+<li><p><strong>mask_file</strong> (<em>str</em><em>, </em><em>optional</em>) – path to the mask file. the default is “auto” for a mask covering all the image</p></li>
+<li><p><strong>box_file_list</strong> (<em>list</em><em>, </em><em>otional</em>) – list of path to boxe_file, boxe in wich annotations have been performed.
+the default is “auto” for a box covering all the image</p></li>
+<li><p><strong>vessel_prop_list</strong> (<em>list</em><em>, </em><em>optional</em>) – list of vessel (first class) proportions. For each proportion, a
+cross-validation set is built. However all c-v sets are built from
+the same seeds.
+the default is [0.5, 0.4, 0.3]</p></li>
+<li><p><strong>point_per_boxe</strong> (<em>int</em><em>, </em><em>optional</em>) – number of annoted point extraced from each boxes to build the datas.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>cross_validation_sets</strong> (<em>dic</em>) – dictionary of list of cross-validation set (list of mask). each key is
+a vessel proportion</p></li>
+<li><p><em>point_per_boxe</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.FeaturesOptimisation">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">FeaturesOptimisation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_dataframes</span></em>, <em class="sig-param"><span class="n">hyperparameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optimise</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">sorting_by</span><span class="o">=</span><span class="default_value">'oob + std'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.FeaturesOptimisation" title="Permalink to this definition">¶</a></dt>
+<dd><p>A methode that evaluate the best set of features for the random
+forest classifier, by remooving worst features one by one.
+This method is not optimal and ImprouvedFeatureOptimaqation is recomended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_dataframes</strong> (<em>dict</em>) – dictionnary of cross validation dataframes.</p></li>
+<li><p><strong>hyperparameters</strong> (<em>dict</em>) – Optimised parameters for random forest.</p></li>
+<li><p><strong>optimise</strong> (<em>TYPE</em><em>, </em><em>optional</em>) – if we are to do sub optimisation insaide the main loop.
+The default is False.</p></li>
+<li><p><strong>sorting_by</strong> (<em>string</em><em>, </em><em>optional</em>) – the methode to sort features in order to remove the worst one,
+if “oob”, features are sorted using the default rank of sklearn random
+forest, using out of bag score. if “shap”, features are sorted using
+the mean shap rank, using shapley values. If +std is added, feature are
+sorted with their mean + std score and not their mean score.
+The default is oob + std</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary of metrics showing the evolution of these one with the
+number of features.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.ImprouvedFeaturesOptimisation">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">ImprouvedFeaturesOptimisation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_dataframes</span></em>, <em class="sig-param"><span class="n">hyperparameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">optimise</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">worst_features_set_size</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.ImprouvedFeaturesOptimisation" title="Permalink to this definition">¶</a></dt>
+<dd><p>A methode that evaluate the best set of features for the random
+forest classifier, by remooving worst features one by one.
+The diference with FeaturesOptimisation lies in the selection of the worst
+feature. This methode take significantly longer but give better results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_dataframes</strong> (<em>dict</em>) – dictionnary of cross validation dataframes.</p></li>
+<li><p><strong>hyperparameters</strong> (<em>dict</em>) – Optimised parameters for random forest.</p></li>
+<li><p><strong>optimise</strong> (<em>TYPE</em><em>, </em><em>optional</em>) – if we are to do sub optimisation insaide the main loop.
+The default is False.</p></li>
+<li><p><strong>worst_features_set_size</strong> (<em>int</em><em>, </em><em>optional</em>) – the number of worst feature to be tested before remooving
+The default is 4</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary of metrics showing the evolution of these one with the
+number of features.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.LoadH5">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">LoadH5</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">dtype=&lt;class 'numpy.float32'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.LoadH5" title="Permalink to this definition">¶</a></dt>
+<dd><p>load h5 array as numpy array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filname</strong> (<em>string</em>) – path to the file</p></li>
+<li><p><strong>dtype</strong> (<em>dtype</em>) – data type of the numpy nd array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong> – the loaded datas</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.LoadH5Data">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">LoadH5Data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.LoadH5Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load h5 datas from package datas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>string</em>) – name of the H5 file to load</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the nd array from H5 file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy nd array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.Optimise">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">Optimise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_dataframes</span></em>, <em class="sig-param"><span class="n">optimiser</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.Optimise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the best hyperparameters for a random forest classifier model through
+an sklearn optimiser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_dataframes</strong> (<em>Dataframe</em>) – the cross_validation set</p></li>
+<li><p><strong>optimiser</strong> (<em>optimiser object</em><em>, </em><em>default = None</em>) – a RandomizedSearchCV or GridSearchCV object to find best
+hyperparameters. if None, a default
+optimiser will be constructed instead
+the default is None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>optimiser</strong> – the optimiser fited to cross validations datas.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>optimiser object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.Predict">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">Predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">mask</span></em>, <em class="sig-param"><span class="n">feature_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.Predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict propabilities from a trained random forest model
+on a mask assuming its features has been calculated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>Random Forest</em>) – trained random forest.</p></li>
+<li><p><strong>mask</strong> (<em>tuple</em>) – tuple of 1d array. coordinate of points</p></li>
+<li><p><strong>feature_path</strong> (<em>str</em>) – path to feature dir.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pred</strong> – DESCRIPTION.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.SaveCV">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">SaveCV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cross_validation_dir</span></em>, <em class="sig-param"><span class="n">cross_validation_sets</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.SaveCV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the cros validation sets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cross_validation_dir</strong> (<em>str</em>) – path to cross validation dir.</p></li>
+<li><p><strong>cross_validation_sets</strong> (<em>dict</em>) – dictionary with cross validation masks.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.SaveH5">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">SaveH5</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">np_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.SaveH5" title="Permalink to this definition">¶</a></dt>
+<dd><p>save numpy array as h5 array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filname</strong> (<em>string</em>) – path to the file</p></li>
+<li><p><strong>np_array</strong> (<em>nd array</em>) – array to be saved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.vesselness.Summarise">
+<code class="sig-prename descclassname">pvtvesselness.vesselness.</code><code class="sig-name descname">Summarise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_dict</span></em>, <em class="sig-param"><span class="n">display</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.vesselness.Summarise" title="Permalink to this definition">¶</a></dt>
+<dd><p>From the results of the CrossValiation methode, build an human readable
+summary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dict</strong> (<em>dict</em>) – the dict from cross_validation data.</p></li>
+<li><p><strong>display</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, display the ROC curv of each test
+the default is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nice_dataframes</strong> – dict of human readable and interpretable dataframes, to analyse cross
+validation results</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">first test</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, titouan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/vesselness.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

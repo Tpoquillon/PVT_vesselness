@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pvtvesselness.data_preparation module &#8212; first test 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pvtvesselness.data_preparation">
+<span id="pvtvesselness-data-preparation-module"></span><h1>pvtvesselness.data_preparation module<a class="headerlink" href="#module-pvtvesselness.data_preparation" title="Permalink to this headline">¶</a></h1>
+<p>Created on Sun Jul 19 15:57:54 2020</p>
+<p>&#64;author: titou</p>
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.Annotations">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">Annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classes</span></em>, <em class="sig-param"><span class="n">mask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">boxe_list</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.Annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>construct an annotation map with 1 for vessel and 2 for non_vessel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>classes</strong> (<em>list</em>) – list of numpy 3d array where each point annoted  as a member of a class
+i as a value of 1.</p></li>
+<li><p><strong>mask</strong> (<em>tuple</em><em>, </em><em>optional</em>) – tuple of 1d array
+coordonate of points in the parenchyme mask</p></li>
+<li><p><strong>boxe_list</strong> (<em>list</em><em>, </em><em>optional</em>) – list of tuple, masks of boxes in wich annotation point will be chosen</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>annotation</strong> – 3d array where each point annoted  as a vessel has a value of 1 and
+each non vessel a value of 2. Only points in the intercection of
+the mask and the union of all boxes are taken into acount</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3d array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.Balance">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">Balance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seeds</span></em>, <em class="sig-param"><span class="n">vessel_prop</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">2000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.Balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>construct a balanced dataset from vessel seed and non_vessel seed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seeds</strong> (<em>list</em>) – list of tuple of 1d array
+each tuple is a suffled mask of points belonging to a different
+classes. The convention is that the first class is the class of
+interest. In our case, the vessels.</p></li>
+<li><p><strong>vessel_prop</strong> (<em>float</em><em>, </em><em>otional</em>) – proportion of vessel points (first class points) in the balanced data
+set. The default is 0.5</p></li>
+<li><p><strong>size</strong> (<em>int</em><em>, </em><em>optional</em>) – size of the balanced data set. The default is 2000.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>balanced_data_set</strong> – tuple of 1d array a shuffled balanced dataset of points from each
+classes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.JoinMask">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">JoinMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask_1</span></em>, <em class="sig-param"><span class="n">mask_2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.JoinMask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate two masks into one</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask_1</strong> (<em>tuple</em>) – tuple of n 1d array of size l1
+coordonate of l1 points.</p></li>
+<li><p><strong>mask_2</strong> (<em>tuple</em>) – tuple of n 1d array of size l2
+coordonate of l2 points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> – conncatenation of mask_1 and mask_2.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple of n 1d array of size l1 + l2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.LoadH5Data">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">LoadH5Data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.LoadH5Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load h5 datas from package datas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>string</em>) – name of the H5 file to load</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the nd array from H5 file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy nd array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.Merge">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">Merge</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.Merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>merge several mask in one</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mask_list</strong> (<em>list</em><em> or </em><em>tuple</em>) – list of mask.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mask</strong> – tuple of 1d array
+coordonate of points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.Seeds">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">Seeds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annotations</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.Seeds" title="Permalink to this definition">¶</a></dt>
+<dd><p>construct shuflled mask for vessel and non vessel point. These will be
+seeds for the balancing of our datas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>annotations</strong> (<em>nd array</em>) – annotation matrix with 1 for vessel, 2 for non vessel
+and 0 for unannoted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>seeds</strong> – list of tuple of 1d array
+each tuple is a suffled mask for a class</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.ShortenMask">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">ShortenMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask</span></em>, <em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.ShortenMask" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask</strong> (<em>tuple</em>) – tuple of n 1d array of size l
+coordonate of l points</p></li>
+<li><p><strong>size</strong> (<em>int</em>) – size of the shortened mask</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>shortened_mask</strong> – tuple of n 1d array of size equal to the size parameter
+coordonate of “size parameter” points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.ShuffleMask">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">ShuffleMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.ShuffleMask" title="Permalink to this definition">¶</a></dt>
+<dd><p>take a mask and shuffle it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mask</strong> (<em>tuple</em>) – tuple of n 1d array of size l
+coordonate of l points we want to shuffle</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>shuffled_mask</strong> – tuple of n 1d array of size l
+shuffled mask.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.Split">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">Split</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask</span></em>, <em class="sig-param"><span class="n">n_split</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.Split" title="Permalink to this definition">¶</a></dt>
+<dd><p>split a single data set in several smaller set of same size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask</strong> (<em>tuple</em>) – tuple of 1d array
+coordonate of points</p></li>
+<li><p><strong>n_split</strong> (<em>int</em><em>, </em><em>optional</em>) – number of split. The default is 5</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>split_set</strong> – tuple of masks.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pvtvesselness.data_preparation.SplitMask">
+<code class="sig-prename descclassname">pvtvesselness.data_preparation.</code><code class="sig-name descname">SplitMask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask</span></em>, <em class="sig-param"><span class="n">mask_1_length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pvtvesselness.data_preparation.SplitMask" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask</strong> (<em>tuple</em>) – tuple of n 1d array of size s, coordonate of s points.</p></li>
+<li><p><strong>mask_1_length</strong> (<em>int</em>) – length of mask_1 after spliting</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mask_1</strong> (<em>tuple</em>) – tuple of n 1d array of size mask_1_length, coordonate of points</p></li>
+<li><p><strong>mask_2</strong> (<em>tuple</em>) – tuple of n 1d array of size s - mask_1_length, coordonate of points.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">first test</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, titouan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/data_preparations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
